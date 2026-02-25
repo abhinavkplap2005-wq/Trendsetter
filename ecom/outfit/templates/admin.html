@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="brand">
+        <div class="logo-dot"></div>
+        <h2>Fashion Admin</h2>
+    </div>
+
+    <nav>
+        <ul>
+            <li class="active"><a href="#">Dashboard</a></li>
+            <li><a href="{% url 'products' %}">Products</a></li>
+            <li><a href="{% url 'category' %}">Category</a></li>
+            <li><a href="#">Customers</a></li>
+        </ul>
+    </nav>
+
+    <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+</aside>
+
+<main class="main-content">
+
+<header>
+    <div>
+        <h1>Admin Overview</h1>
+        <p>All products and registered users</p>
+    </div>
+</header>
+
+<!-- Stats Cards -->
+<section class="cards">
+    <div class="card blue">
+        <h3>Total Products</h3>
+        <p>{{ total_products }}</p>
+    </div>
+    <div class="card green">
+        <h3>Total Users</h3>
+        <p>{{ total_users }}</p>
+    </div>
+</section>
+
+<!-- PRODUCTS TABLE -->
+<section class="table-container">
+    <h2>All Products</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td><img src="{{ product.image.url }}" class="table-img"></td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category.name }}</td>
+                <td>₹{{ product.price }}</td>
+                <td>
+                    {% if product.stock > 0 %}
+                        <span class="stock in">In Stock ({{ product.stock }})</span>
+                    {% else %}
+                        <span class="stock out">Out</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No products found</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<!-- USERS TABLE -->
+<section class="table-container">
+    <h2>Registered Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Date Joined</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.date_joined|date:"d M Y" }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3">No users found</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+</main>
+</body>
+</html>

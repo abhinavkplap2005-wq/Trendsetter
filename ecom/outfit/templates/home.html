@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendSetter | Online Fashion Shopping</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <span>Free Shipping on orders over $50!</span>
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}" class="btn-auth">Login</a>
+                <a href="{% url 'register' %}" class="btn-auth">Register</a>
+                <a href="{% url 'logout' %}" class="btn-auth">logout</a>
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <div class="logo">TREND<span>SETTER</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Kids</a></li>
+                <li><a href="#">Home & Living</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" placeholder="Search for products, brands...">
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="nav-icons">
+                <i class="fa fa-heart"></i>
+                <i class="fa fa-shopping-bag"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>FLAT 50% OFF</h1>
+            <p>On Season's Best Sellers</p>
+            <button class="shop-now">+ SHOP NOW</button>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="{% static 'img/image.jpg' %}" alt="Product">
+                <div class="info">
+                    <h4>Roadster</h4>
+                    <p>Cotton Casual Shirt</p>
+                    <span class="price">$24.99</span> <span class="old-price">$49.99</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x400" alt="Product">
+                <div class="info">
+                    <h4>HRX</h4>
+                    <p>Running Sports Shoes</p>
+                    <span class="price">$35.00</span> <span class="old-price">$70.00</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x400" alt="Product">
+                <div class="info">
+                    <h4>Levi's</h4>
+                    <p>Slim Fit Jeans</p>
+                    <span class="price">$45.00</span> <span class="old-price">$90.00</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x400" alt="Product">
+                <div class="info">
+                    <h4>Anouk</h4>
+                    <p>Printed Kurta</p>
+                    <span class="price">$19.99</span> <span class="old-price">$39.99</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

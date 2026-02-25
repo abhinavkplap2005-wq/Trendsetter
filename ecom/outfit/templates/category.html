@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Category | TrendSetter</title>
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+</head>
+<body>
+
+<div class="page-wrapper">
+    <div class="form-card">
+        <h2>Add New Category</h2>
+        <p class="subtitle">Create a category for clothing items</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Category Name</label>
+                <input type="text" name="name" placeholder="Enter category name" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Add Category</button>
+        </form>
+
+        <hr style="margin:20px 0;">
+
+        <h3>Existing Categories</h3>
+
+        {% if categories %}
+            <ul style="list-style:none; padding:0;">
+                {% for cat in categories %}
+                    <li style="padding:8px 0; border-bottom:1px solid #eee;">
+                        {{ cat.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p style="color:gray;">No categories added yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

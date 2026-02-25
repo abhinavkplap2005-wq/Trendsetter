@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+.orders-container {
+    width: 90%;
+    margin: 40px auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.order-card {
+    display: flex;
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.order-image img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.order-details {
+    margin-left: 25px;
+}
+
+.order-details h2 {
+    margin: 0 0 10px;
+}
+
+.total {
+    color: #2e7d32;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.no-orders {
+    text-align: center;
+    padding: 40px;
+}
+
+.shop-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.shop-btn:hover {
+    background: #0056b3;
+}

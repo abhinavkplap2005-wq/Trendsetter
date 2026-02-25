@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard | TrendSetter</title>
+    <link rel="stylesheet" href="{% static 'css/user_dash.css' %}">
+</head>
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar">
+    <h2>TrendSetter</h2>
+    <ul>
+        <li class="active">Dashboard</li>
+        <li><a href="{% url 'my_orders' %}"> my orders</a></li>
+        <li>Wishlist</li>
+        <li>Profile</li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="main-content">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Welcome, {{ request.user.first_name }}</h1>
+        <p>Browse and explore latest fashion collections</p>
+    </div>
+
+    <!-- INFO CARDS -->
+    <div class="cards">
+        <div class="card">
+            <h3>Total Orders</h3>
+            <p>{{ total_orders|default:"0" }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Wishlist Items</h3>
+            <p>{{ wishlist_count|default:"0" }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Account Status</h3>
+            <p>Active</p>
+        </div>
+    </div>
+
+    <!-- ================= PRODUCTS SECTION ================= -->
+    <div class="products-section">
+        <div class="product-header">
+            <h2>Available Products</h2>
+
+            <!-- SEARCH BAR -->
+            <input type="text" id="searchInput" placeholder="Search by price or category...">
+        </div>
+
+        <div class="products-grid" id="productContainer">
+            {% for product in products %}
+            <div class="product-card"
+                 data-price="{{ product.price }}"
+                 data-category="{{ product.category.name|lower }}">
+
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+
+                <div class="product-details">
+                    <h3>{{ product.name }}</h3>
+                    <p class="category">{{ product.category.name }}</p>
+                    <p class="price">₹{{ product.price }}</p>
+                    <p>Size: {{ product.size }}</p>
+                    <p>Color: {{ product.color }}</p>
+
+                    {% if product.stock > 0 %}
+                        <span class="in-stock">In Stock ({{ product.stock }})</span>
+                    {% else %}
+                        <span class="out-stock">Out of Stock</span>
+                    {% endif %}
+
+        
+                    <a href="{% url 'cloth_detail' product.id %}" class="view-btn">
+                        view details
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+                <p>No products available.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= SEARCH SCRIPT ================= -->
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function() {
+
+    let filter = this.value.toLowerCase();
+    let products = document.querySelectorAll(".product-card");
+
+    products.forEach(function(card) {
+
+        let price = card.getAttribute("data-price");
+        let category = card.getAttribute("data-category");
+
+        if (price.includes(filter) || category.includes(filter)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+});
+</script> 
+
+</body>
+</html>

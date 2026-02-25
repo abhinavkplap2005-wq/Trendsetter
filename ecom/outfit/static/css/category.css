@@ -1,0 +1,100 @@
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(120deg, #f6f9fc, #e9eff5);
+}
+
+/* ===== PAGE WRAPPER ===== */
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ===== CARD ===== */
+.form-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== HEADINGS ===== */
+.form-card h2 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+/* ===== FORM GROUP ===== */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* ===== BUTTON ===== */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background: #5a67d8;
+}
+
+/* ===== CATEGORY LIST ===== */
+.category-list {
+    margin-top: 20px;
+}
+
+.category-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.category-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+}
+
+.category-list li:last-child {
+    border-bottom: none;
+}

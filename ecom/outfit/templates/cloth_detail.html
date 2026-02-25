@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }} | Details</title>
+    <link rel="stylesheet" href="{% static 'css/book.css' %}">
+</head>
+<body>
+
+<div class="detail-container">
+
+    <!-- LEFT SIDE IMAGE -->
+    <div class="image-section">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    </div>
+
+    <!-- RIGHT SIDE DETAILS -->
+    <div class="info-section">
+
+        <h1>{{ product.name }}</h1>
+        <p class="category">Category: {{ product.category.name }}</p>
+        <p class="price">₹{{ product.price }}</p>
+
+        <div class="specs">
+            <p><strong>Size:</strong> {{ product.size }}</p>
+            <p><strong>Color:</strong> {{ product.color }}</p>
+
+            {% if product.stock > 0 %}
+                <p class="in-stock">In Stock ({{ product.stock }} available)</p>
+            {% else %}
+                <p class="out-stock">Out of Stock</p>
+            {% endif %}
+        </div>
+
+        <hr>
+
+        <!-- ================= BOOKING SECTION ================= -->
+
+        {% if already_booked %}
+
+            <p style="color: green; font-weight: bold;">
+                ✔ your order is confirmed
+            </p>
+            <p><strong>Remaining Stock:</strong> {{ product.stock }}</p>
+
+        {% else %}
+
+            {% if product.stock > 0 %}
+
+                <form method="POST" class="booking-form">
+                    {% csrf_token %}
+
+                    <label>Quantity</label>
+                    <input type="number"
+                           name="quantity"
+                           min="1"
+                           max="{{ product.stock }}"
+                           required>
+
+                    <label>Delivery Address</label>
+                    <textarea name="address" rows="3" required></textarea>
+
+                    <button type="submit">Book Now</button>
+                </form>
+
+                <p><strong>Available Stock:</strong> {{ product.stock }}</p>
+
+            {% else %}
+                <button class="disabled-btn" disabled>Out of Stock</button>
+            {% endif %}
+
+        {% endif %}
+
+        <!-- BACK BUTTON -->
+        <a href="{% url 'user_dashboard' %}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
