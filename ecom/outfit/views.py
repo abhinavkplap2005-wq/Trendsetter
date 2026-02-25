@@ -59,7 +59,6 @@ def login_view(request):
         if user is not None:
             login(request, user)
 
-            # Redirect based on user type
             if user.is_superuser:
                 return redirect("admin_dashboard")
             else:
